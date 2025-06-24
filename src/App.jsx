@@ -12,93 +12,17 @@ import {
   Toolbar,
   Typography,
   Grid,
-  Paper
+  Paper,
+  IconButton
 } from '@mui/material';
+import { ArrowBack as ArrowBackIcon } from '@mui/icons-material';
 import theme from './theme';
 import ChecklistPhase from './components/ChecklistPhase';
-
-// Lista de aeronaves disponíveis
-const AIRCRAFTS = [
-  {
-    typeDesignator: 'C700',
-    name: 'Cessna Citation Longitude',
-    checklistImport: () => import('./data/c700.js'),
-    image: null,
-    available: true
-  },
-  {
-    typeDesignator: 'B737MAX',
-    name: 'Boeing 737 Max',
-    checklistImport: null,
-    image: null,
-    available: false
-  },
-  {
-    typeDesignator: 'A320NEO',
-    name: 'Airbus 320 Neo',
-    checklistImport: null,
-    image: null,
-    available: false
-  },
-  {
-    typeDesignator: 'E190',
-    name: 'Ejet 190',
-    checklistImport: null,
-    image: null,
-    available: false
-  },
-  {
-    typeDesignator: 'C172',
-    name: 'Cessna 172 G1000',
-    checklistImport: null,
-    image: null,
-    available: false
-  },
-  {
-    typeDesignator: 'SR22',
-    name: 'Cirrus SR22T',
-    checklistImport: null,
-    image: null,
-    available: false
-  },
-  {
-    typeDesignator: 'E110',
-    name: 'EMB 110 Bandeirante',
-    checklistImport: null,
-    image: null,
-    available: false
-  },
-  {
-    typeDesignator: 'TBM9',
-    name: 'TBM 930',
-    checklistImport: null,
-    image: null,
-    available: false
-  },
-  {
-    typeDesignator: 'B738',
-    name: 'Boeing 737-800',
-    checklistImport: null,
-    image: null,
-    available: false
-  },
-  {
-    typeDesignator: 'B763',
-    name: 'Boeing 767-300',
-    checklistImport: null,
-    image: null,
-    available: false
-  },
-  {
-    typeDesignator: 'B772',
-    name: 'Boeing 777-200ER',
-    checklistImport: null,
-    image: null,
-    available: false
-  }
-];
+import MANUFACTURERS from './data/manufacturers.js';
+import AIRCRAFTS from './data/aircrafts.js';
 
 function App() {
+  const [selectedManufacturer, setSelectedManufacturer] = useState(null);
   const [selectedAircraft, setSelectedAircraft] = useState(null);
   const [checklist, setChecklist] = useState(null);
   const [expandedPhase, setExpandedPhase] = useState(null);
@@ -106,11 +30,12 @@ function App() {
   const [openDialog, setOpenDialog] = useState(false);
   const contentRef = useRef(null);
 
-  // Carrega o checklist da aeronave selecionada
-  const handleAircraftSelect = async (aircraft) => {
+  const handleAircraftSelect = async (aircraftKey) => {
+    const aircraft = AIRCRAFTS[aircraftKey];
+    if (!aircraft.available) return;
     const module = await aircraft.checklistImport();
     setChecklist(module.default);
-    setSelectedAircraft(aircraft);
+    setSelectedAircraft({ ...aircraft, typeDesignator: aircraftKey });
   };
 
   const handlePhaseExpand = (phaseId) => {
@@ -119,7 +44,7 @@ function App() {
       setTimeout(() => {
         const phaseElement = document.getElementById(`phase-${phaseId}`);
         if (phaseElement) {
-          const headerHeight = 64; // Altura do AppBar
+          const headerHeight = 64;
           const elementPosition = phaseElement.getBoundingClientRect().top;
           const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
           window.scrollTo({
@@ -173,42 +98,37 @@ function App() {
     }
   };
 
-  // Tela de seleção de aeronave
-  if (!selectedAircraft) {
+  // Tela de seleção de fabricante
+  if (!selectedManufacturer) {
     return (
       <ThemeProvider theme={theme}>
         <Box sx={{ minHeight: '100vh', bgcolor: 'background.default', display: 'flex', flexDirection: 'column' }}>
           <AppBar position="fixed" elevation={0} sx={{ bgcolor: 'background.paper', borderBottom: 1, borderColor: 'divider' }}>
             <Toolbar>
               <Typography variant="h6" component="h1" sx={{ width: '100%', textAlign: 'center', fontWeight: 600, color: 'text.primary' }}>
-                Selecione a Aeronave
+                Selecione o Fabricante
               </Typography>
             </Toolbar>
           </AppBar>
           <Box component="main" sx={{ flexGrow: 1, mt: '64px', mb: '72px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <Grid container spacing={3} justifyContent="center">
-              {AIRCRAFTS.map((aircraft) => (
-                <Grid item key={aircraft.typeDesignator} xs={12} sm={6} md={4}>
+              {MANUFACTURERS.sort((a, b) => a.name.localeCompare(b.name)).map((manufacturer) => (
+                <Grid item key={manufacturer.key} xs={12} sm={6} md={4}>
                   <Paper
                     elevation={3}
                     sx={{
                       p: 3,
                       textAlign: 'center',
-                      cursor: aircraft.available ? 'pointer' : 'not-allowed',
-                      opacity: aircraft.available ? 1 : 0.5,
+                      cursor: 'pointer',
                       transition: '0.2s',
-                      position: 'relative',
-                      '&:hover': aircraft.available ? { boxShadow: 6 } : {},
+                      '&:hover': { boxShadow: 6 }
                     }}
-                    onClick={aircraft.available ? () => handleAircraftSelect(aircraft) : undefined}
+                    onClick={() => setSelectedManufacturer(manufacturer)}
                   >
-                    <Typography variant="h5" sx={{ fontWeight: 500, mb: 1 }}>{aircraft.typeDesignator}</Typography>
-                    <Typography variant="body1" color="text.secondary">{aircraft.name}</Typography>
-                    {!aircraft.available && (
-                      <Box sx={{ position: 'absolute', top: 8, right: 8, bgcolor: 'warning.main', color: 'white', px: 1.5, py: 0.5, borderRadius: 1, fontSize: 12 }}>
-                        Em breve
-                      </Box>
-                    )}
+                    <Typography variant="h5" sx={{ fontWeight: 500, mb: 1 }}>{manufacturer.name}</Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      {manufacturer.types.length} tipo(s) de aeronave
+                    </Typography>
                   </Paper>
                 </Grid>
               ))}
@@ -219,13 +139,81 @@ function App() {
     );
   }
 
-  // Tela do checklist (igual ao fluxo atual)
+  // Tela de seleção de tipo de aeronave
+  if (!selectedAircraft) {
+    return (
+      <ThemeProvider theme={theme}>
+        <Box sx={{ minHeight: '100vh', bgcolor: 'background.default', display: 'flex', flexDirection: 'column' }}>
+          <AppBar position="fixed" elevation={0} sx={{ bgcolor: 'background.paper', borderBottom: 1, borderColor: 'divider' }}>
+            <Toolbar>
+              <IconButton
+                edge="start"
+                color="inherit"
+                onClick={() => setSelectedManufacturer(null)}
+                sx={{ mr: 2 }}
+              >
+                <ArrowBackIcon />
+              </IconButton>
+              <Typography variant="h6" component="h1" sx={{ flexGrow: 1, textAlign: 'center', fontWeight: 600, color: 'text.primary' }}>
+                {selectedManufacturer.name}
+              </Typography>
+            </Toolbar>
+          </AppBar>
+          <Box component="main" sx={{ flexGrow: 1, mt: '64px', mb: '72px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <Grid container spacing={3} justifyContent="center">
+              {selectedManufacturer.types.map((typeKey) => {
+                const aircraft = AIRCRAFTS[typeKey];
+                return (
+                  <Grid item key={typeKey} xs={12} sm={6} md={4}>
+                    <Paper
+                      elevation={3}
+                      sx={{
+                        p: 3,
+                        textAlign: 'center',
+                        cursor: aircraft.available ? 'pointer' : 'not-allowed',
+                        opacity: aircraft.available ? 1 : 0.5,
+                        transition: '0.2s',
+                        position: 'relative',
+                        '&:hover': aircraft.available ? { boxShadow: 6 } : {},
+                      }}
+                      onClick={aircraft.available ? () => handleAircraftSelect(typeKey) : undefined}
+                    >
+                      <Typography variant="h5" sx={{ fontWeight: 500, mb: 1 }}>{typeKey}</Typography>
+                      <Typography variant="body1" color="text.secondary">{aircraft.name}</Typography>
+                      {!aircraft.available && (
+                        <Box sx={{ position: 'absolute', top: 8, right: 8, bgcolor: 'warning.main', color: 'white', px: 1.5, py: 0.5, borderRadius: 1, fontSize: 12 }}>
+                          Em breve
+                        </Box>
+                      )}
+                    </Paper>
+                  </Grid>
+                );
+              })}
+            </Grid>
+          </Box>
+        </Box>
+      </ThemeProvider>
+    );
+  }
+
+  // Tela do checklist
   return (
     <ThemeProvider theme={theme}>
       <Box sx={{ minHeight: '100vh', bgcolor: 'background.default', display: 'flex', flexDirection: 'column' }}>
         <AppBar position="fixed" elevation={0} sx={{ bgcolor: 'background.paper', borderBottom: 1, borderColor: 'divider' }}>
           <Toolbar>
-            <Typography variant="h6" component="h1" sx={{ width: '100%', textAlign: 'center', fontWeight: 600, color: 'text.primary' }}>
+            <IconButton
+              edge="start"
+              color="inherit"
+              onClick={() => {
+                setSelectedAircraft(null);
+                setChecklist(null);
+              }}
+              sx={{ mr: 2 }}
+            >
+              <ArrowBackIcon />
+            </IconButton>
+            <Typography variant="h6" component="h1" sx={{ flexGrow: 1, textAlign: 'center', fontWeight: 600, color: 'text.primary' }}>
               {selectedAircraft.typeDesignator} Checklist
             </Typography>
           </Toolbar>
