@@ -8,8 +8,8 @@ const AIRCRAFTS = {
   B737MAX: {
     manufacturer: 'BOEING',
     name: 'Boeing 737 Max',
-    checklistImport: null,
-    available: false
+    checklistImport: () => import('./boeing/b38m.js'),
+    available: true
   },
   B738: {
     manufacturer: 'BOEING',

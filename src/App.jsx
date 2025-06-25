@@ -11,8 +11,6 @@ import {
   DialogTitle,
   Toolbar,
   Typography,
-  Grid,
-  Paper,
   IconButton
 } from '@mui/material';
 import { ArrowBack as ArrowBackIcon } from '@mui/icons-material';
@@ -20,6 +18,8 @@ import theme from './theme';
 import ChecklistPhase from './components/ChecklistPhase';
 import MANUFACTURERS from './data/manufacturers.js';
 import AIRCRAFTS from './data/aircrafts.js';
+import ManufacturerList from './components/ManufacturerList';
+import AircraftList from './components/AircraftList';
 
 function App() {
   const [selectedManufacturer, setSelectedManufacturer] = useState(null);
@@ -111,28 +111,10 @@ function App() {
             </Toolbar>
           </AppBar>
           <Box component="main" sx={{ flexGrow: 1, mt: '64px', mb: '72px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <Grid container spacing={3} justifyContent="center">
-              {MANUFACTURERS.sort((a, b) => a.name.localeCompare(b.name)).map((manufacturer) => (
-                <Grid item key={manufacturer.key} xs={12} sm={6} md={4}>
-                  <Paper
-                    elevation={3}
-                    sx={{
-                      p: 3,
-                      textAlign: 'center',
-                      cursor: 'pointer',
-                      transition: '0.2s',
-                      '&:hover': { boxShadow: 6 }
-                    }}
-                    onClick={() => setSelectedManufacturer(manufacturer)}
-                  >
-                    <Typography variant="h5" sx={{ fontWeight: 500, mb: 1 }}>{manufacturer.name}</Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      {manufacturer.types.length} tipo(s) de aeronave
-                    </Typography>
-                  </Paper>
-                </Grid>
-              ))}
-            </Grid>
+            <ManufacturerList
+              manufacturers={MANUFACTURERS.sort((a, b) => a.name.localeCompare(b.name))}
+              onSelect={setSelectedManufacturer}
+            />
           </Box>
         </Box>
       </ThemeProvider>
@@ -141,6 +123,10 @@ function App() {
 
   // Tela de seleção de tipo de aeronave
   if (!selectedAircraft) {
+    const aircraftsList = selectedManufacturer.types.map((typeKey) => ({
+      typeKey,
+      aircraft: AIRCRAFTS[typeKey]
+    }));
     return (
       <ThemeProvider theme={theme}>
         <Box sx={{ minHeight: '100vh', bgcolor: 'background.default', display: 'flex', flexDirection: 'column' }}>
@@ -160,36 +146,10 @@ function App() {
             </Toolbar>
           </AppBar>
           <Box component="main" sx={{ flexGrow: 1, mt: '64px', mb: '72px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <Grid container spacing={3} justifyContent="center">
-              {selectedManufacturer.types.map((typeKey) => {
-                const aircraft = AIRCRAFTS[typeKey];
-                return (
-                  <Grid item key={typeKey} xs={12} sm={6} md={4}>
-                    <Paper
-                      elevation={3}
-                      sx={{
-                        p: 3,
-                        textAlign: 'center',
-                        cursor: aircraft.available ? 'pointer' : 'not-allowed',
-                        opacity: aircraft.available ? 1 : 0.5,
-                        transition: '0.2s',
-                        position: 'relative',
-                        '&:hover': aircraft.available ? { boxShadow: 6 } : {},
-                      }}
-                      onClick={aircraft.available ? () => handleAircraftSelect(typeKey) : undefined}
-                    >
-                      <Typography variant="h5" sx={{ fontWeight: 500, mb: 1 }}>{typeKey}</Typography>
-                      <Typography variant="body1" color="text.secondary">{aircraft.name}</Typography>
-                      {!aircraft.available && (
-                        <Box sx={{ position: 'absolute', top: 8, right: 8, bgcolor: 'warning.main', color: 'white', px: 1.5, py: 0.5, borderRadius: 1, fontSize: 12 }}>
-                          Em breve
-                        </Box>
-                      )}
-                    </Paper>
-                  </Grid>
-                );
-              })}
-            </Grid>
+            <AircraftList
+              aircrafts={aircraftsList}
+              onSelect={handleAircraftSelect}
+            />
           </Box>
         </Box>
       </ThemeProvider>
