@@ -28,9 +28,12 @@ jobs:
             exit 1
           fi
       
-      - name: Deploy to Firebase
-        uses: w9jds/firebase-action@master
+      - name: Deploy to Firebase Hosting
+        uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          args: deploy --only hosting --project c700-checklist
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_SIMMERLABS_CHECKLIST }}"
+          channelId: live
+          projectId: simmerlabs-checklist
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }} 

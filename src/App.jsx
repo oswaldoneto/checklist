@@ -13,13 +13,14 @@ import {
   Typography,
   IconButton
 } from '@mui/material';
-import { ArrowBack as ArrowBackIcon } from '@mui/icons-material';
+import { ArrowBack as ArrowBackIcon, InfoOutlined as InfoIcon } from '@mui/icons-material';
 import theme from './theme';
 import ChecklistPhase from './components/ChecklistPhase';
 import MANUFACTURERS from './data/manufacturers.js';
 import AIRCRAFTS from './data/aircrafts.js';
 import ManufacturerList from './components/ManufacturerList';
 import AircraftList from './components/AircraftList';
+import AboutPage from './components/AboutPage';
 
 function App() {
   const [selectedManufacturer, setSelectedManufacturer] = useState(null);
@@ -28,6 +29,7 @@ function App() {
   const [expandedPhase, setExpandedPhase] = useState(null);
   const [resetKey, setResetKey] = useState(0);
   const [openDialog, setOpenDialog] = useState(false);
+  const [showAbout, setShowAbout] = useState(false);
   const contentRef = useRef(null);
 
   const handleAircraftSelect = async (aircraftKey) => {
@@ -98,37 +100,35 @@ function App() {
     }
   };
 
-  // Tela de seleção de fabricante
-  if (!selectedManufacturer) {
-    return (
-      <ThemeProvider theme={theme}>
+  return (
+    <ThemeProvider theme={theme}>
+      {showAbout ? (
+        <AboutPage onBack={() => setShowAbout(false)} />
+      ) : !selectedManufacturer ? (
         <Box sx={{ minHeight: '100vh', bgcolor: 'background.default', display: 'flex', flexDirection: 'column' }}>
           <AppBar position="fixed" elevation={0} sx={{ bgcolor: 'background.paper', borderBottom: 1, borderColor: 'divider' }}>
             <Toolbar>
-              <Typography variant="h6" component="h1" sx={{ width: '100%', textAlign: 'center', fontWeight: 600, color: 'text.primary' }}>
-                Selecione o Fabricante
+              <Typography variant="h6" component="h1" sx={{ flexGrow: 1, textAlign: 'center', fontWeight: 600, color: 'text.primary', position: 'absolute', left: 0, right: 0 }}>
+                Select Manufacturer
               </Typography>
+              <IconButton
+                color="inherit"
+                aria-label="About"
+                onClick={() => setShowAbout(true)}
+                sx={{ position: 'absolute', right: 8 }}
+              >
+                <InfoIcon />
+              </IconButton>
             </Toolbar>
           </AppBar>
-          <Box component="main" sx={{ flexGrow: 1, mt: '64px', mb: '72px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <Box component="main" sx={{ flexGrow: 1, mt: '64px', mb: '72px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
             <ManufacturerList
               manufacturers={MANUFACTURERS.sort((a, b) => a.name.localeCompare(b.name))}
               onSelect={setSelectedManufacturer}
             />
           </Box>
         </Box>
-      </ThemeProvider>
-    );
-  }
-
-  // Tela de seleção de tipo de aeronave
-  if (!selectedAircraft) {
-    const aircraftsList = selectedManufacturer.types.map((typeKey) => ({
-      typeKey,
-      aircraft: AIRCRAFTS[typeKey]
-    }));
-    return (
-      <ThemeProvider theme={theme}>
+      ) : !selectedAircraft ? (
         <Box sx={{ minHeight: '100vh', bgcolor: 'background.default', display: 'flex', flexDirection: 'column' }}>
           <AppBar position="fixed" elevation={0} sx={{ bgcolor: 'background.paper', borderBottom: 1, borderColor: 'divider' }}>
             <Toolbar>
@@ -147,72 +147,67 @@ function App() {
           </AppBar>
           <Box component="main" sx={{ flexGrow: 1, mt: '64px', mb: '72px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <AircraftList
-              aircrafts={aircraftsList}
+              aircrafts={selectedManufacturer.types.map((typeKey) => ({ typeKey, aircraft: AIRCRAFTS[typeKey] }))}
               onSelect={handleAircraftSelect}
             />
           </Box>
         </Box>
-      </ThemeProvider>
-    );
-  }
-
-  // Tela do checklist
-  return (
-    <ThemeProvider theme={theme}>
-      <Box sx={{ minHeight: '100vh', bgcolor: 'background.default', display: 'flex', flexDirection: 'column' }}>
-        <AppBar position="fixed" elevation={0} sx={{ bgcolor: 'background.paper', borderBottom: 1, borderColor: 'divider' }}>
-          <Toolbar>
-            <IconButton
-              edge="start"
-              color="inherit"
-              onClick={() => {
-                setSelectedAircraft(null);
-                setChecklist(null);
-              }}
-              sx={{ mr: 2 }}
-            >
-              <ArrowBackIcon />
-            </IconButton>
-            <Typography variant="h6" component="h1" sx={{ flexGrow: 1, textAlign: 'center', fontWeight: 600, color: 'text.primary' }}>
-              {selectedAircraft.typeDesignator} Checklist
-            </Typography>
-          </Toolbar>
-        </AppBar>
-        <Box ref={contentRef} component="main" sx={{ flexGrow: 1, mt: '64px', mb: '72px', overflowY: 'auto', bgcolor: 'background.default' }}>
-          <Box key={resetKey}>
-            {Object.entries(checklist.FLIGHT_PHASES).map(([phase, phaseData]) => (
-              <ChecklistPhase
-                key={phaseData.id}
-                id={`phase-${phaseData.id}`}
-                title={phase.replace(/_/g, ' ')}
-                items={phaseData.items}
-                isExpanded={expandedPhase === phaseData.id}
-                onToggle={() => handlePhaseExpand(phaseData.id)}
-              />
-            ))}
+      ) : (
+        <Box sx={{ minHeight: '100vh', bgcolor: 'background.default', display: 'flex', flexDirection: 'column' }}>
+          <AppBar position="fixed" elevation={0} sx={{ bgcolor: 'background.paper', borderBottom: 1, borderColor: 'divider' }}>
+            <Toolbar>
+              <IconButton
+                edge="start"
+                color="inherit"
+                onClick={() => {
+                  setSelectedAircraft(null);
+                  setChecklist(null);
+                }}
+                sx={{ mr: 2 }}
+              >
+                <ArrowBackIcon />
+              </IconButton>
+              <Typography variant="h6" component="h1" sx={{ flexGrow: 1, textAlign: 'center', fontWeight: 600, color: 'text.primary' }}>
+                {selectedAircraft.typeDesignator} Checklist
+              </Typography>
+            </Toolbar>
+          </AppBar>
+          <Box ref={contentRef} component="main" sx={{ flexGrow: 1, mt: '64px', mb: '72px', overflowY: 'auto', bgcolor: 'background.default' }}>
+            <Box key={resetKey}>
+              {Object.entries(checklist.FLIGHT_PHASES).map(([phase, phaseData]) => (
+                <ChecklistPhase
+                  key={phaseData.id}
+                  id={`phase-${phaseData.id}`}
+                  title={phase.replace(/_/g, ' ')}
+                  items={phaseData.items}
+                  isExpanded={expandedPhase === phaseData.id}
+                  onToggle={() => handlePhaseExpand(phaseData.id)}
+                />
+              ))}
+            </Box>
           </Box>
-        </Box>
-        <Box component="footer" sx={{ position: 'fixed', bottom: 0, left: 0, right: 0, bgcolor: 'background.paper', borderTop: 1, borderColor: 'divider', p: 2, zIndex: 2 }}>
-          <Box sx={{ display: 'flex', justifyContent: 'space-between', maxWidth: '100%', mx: 'auto' }}>
-            <Button variant="contained" color="inherit" onClick={handleReset} sx={{ bgcolor: 'rgba(0, 0, 0, 0.2)', '&:hover': { bgcolor: 'rgba(0, 0, 0, 0.3)' } }}>
-              Reset
-            </Button>
-            <Button variant="contained" color="success" onClick={handleCheck}>
-              Check
-            </Button>
+          <Box component="footer" sx={{ position: 'fixed', bottom: 0, left: 0, right: 0, bgcolor: 'background.paper', borderTop: 1, borderColor: 'divider', p: 2, zIndex: 2 }}>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', maxWidth: '100%', mx: 'auto' }}>
+              <Button variant="contained" color="inherit" onClick={handleReset} sx={{ bgcolor: 'rgba(0, 0, 0, 0.2)', '&:hover': { bgcolor: 'rgba(0, 0, 0, 0.3)' } }}>
+                Reset
+              </Button>
+              <Button variant="contained" color="success" onClick={handleCheck}>
+                Check
+              </Button>
+            </Box>
           </Box>
+          <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
+            <DialogTitle>Confirm Reset</DialogTitle>
+            <DialogContent>
+              <DialogContentText>Tem certeza que deseja reiniciar o checklist?</DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={() => setOpenDialog(false)}>Cancelar</Button>
+              <Button onClick={confirmReset} color="error">Resetar</Button>
+            </DialogActions>
+          </Dialog>
         </Box>
-        <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
-          <DialogTitle>Confirm Reset</DialogTitle>
-          <DialogContent>
-            <DialogContentText>Tem certeza que deseja reiniciar o checklist?</DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={() => setOpenDialog(false)}>Cancelar</Button>
-            <Button onClick={confirmReset} color="error">Resetar</Button>
-          </DialogActions>
-        </Dialog>
-      </Box>
+      )}
     </ThemeProvider>
   );
 }

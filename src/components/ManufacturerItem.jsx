@@ -2,6 +2,7 @@ import React from 'react';
 import { Paper, Typography } from '@mui/material';
 
 export default function ManufacturerItem({ manufacturer, onClick }) {
+  const count = manufacturer.types.length;
   return (
     <Paper
       elevation={3}
@@ -16,7 +17,7 @@ export default function ManufacturerItem({ manufacturer, onClick }) {
     >
       <Typography variant="h5" sx={{ fontWeight: 500, mb: 1 }}>{manufacturer.name}</Typography>
       <Typography variant="body2" color="text.secondary">
-        {manufacturer.types.length} tipo(s) de aeronave
+        {count} aircraft {count === 1 ? 'type' : 'types'}
       </Typography>
     </Paper>
   );
