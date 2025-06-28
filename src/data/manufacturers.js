@@ -32,7 +32,7 @@ const MANUFACTURERS = [
   {
     key: 'PIPER',
     name: 'Piper',
-    types: ['PA28B',]
+    types: ['P28B',]
   }
 
 ];

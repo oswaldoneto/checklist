@@ -1,5 +1,4 @@
 const checklist = {
-
     "PREFLIGHT_COCKPIT": {
         id: "phase_preflight_cockpit",
         items: {
