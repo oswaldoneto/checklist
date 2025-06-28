@@ -64,6 +64,12 @@ const AIRCRAFTS = {
     name: 'Ejet 190',
     checklistImport: null,
     available: false
+  },
+  PA28: {
+    manufacturer: 'PIPER',
+    name: 'PA-28-236 Dakota',
+    checklistImport: null,
+    available: false
   }
 };
 
