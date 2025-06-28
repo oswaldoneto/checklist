@@ -21,6 +21,7 @@ import AIRCRAFTS from './data/aircrafts.js';
 import ManufacturerList from './components/ManufacturerList';
 import AircraftList from './components/AircraftList';
 import AboutPage from './components/AboutPage';
+import PixDonatePage from './components/PixDonatePage';
 
 function App() {
   const [selectedManufacturer, setSelectedManufacturer] = useState(null);
@@ -30,6 +31,7 @@ function App() {
   const [resetKey, setResetKey] = useState(0);
   const [openDialog, setOpenDialog] = useState(false);
   const [showAbout, setShowAbout] = useState(false);
+  const [showPixDonate, setShowPixDonate] = useState(false);
   const contentRef = useRef(null);
 
   const handleAircraftSelect = async (aircraftKey) => {
@@ -102,8 +104,10 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      {showAbout ? (
-        <AboutPage onBack={() => setShowAbout(false)} />
+      {showPixDonate ? (
+        <PixDonatePage onBack={() => setShowPixDonate(false)} />
+      ) : showAbout ? (
+        <AboutPage onBack={() => setShowAbout(false)} onDonate={() => { setShowAbout(false); setShowPixDonate(true); }} />
       ) : !selectedManufacturer ? (
         <Box sx={{ minHeight: '100vh', bgcolor: 'background.default', display: 'flex', flexDirection: 'column' }}>
           <AppBar position="fixed" elevation={0} sx={{ bgcolor: 'background.paper', borderBottom: 1, borderColor: 'divider' }}>
@@ -131,7 +135,7 @@ function App() {
       ) : !selectedAircraft ? (
         <Box sx={{ minHeight: '100vh', bgcolor: 'background.default', display: 'flex', flexDirection: 'column' }}>
           <AppBar position="fixed" elevation={0} sx={{ bgcolor: 'background.paper', borderBottom: 1, borderColor: 'divider' }}>
-            <Toolbar>
+          <Toolbar>
               <IconButton
                 edge="start"
                 color="inherit"
@@ -142,7 +146,7 @@ function App() {
               </IconButton>
               <Typography variant="h6" component="h1" sx={{ flexGrow: 1, textAlign: 'center', fontWeight: 600, color: 'text.primary' }}>
                 {selectedManufacturer.name}
-              </Typography>
+            </Typography>
               <IconButton
                 color="inherit"
                 aria-label="About"
@@ -151,8 +155,8 @@ function App() {
               >
                 <InfoIcon />
               </IconButton>
-            </Toolbar>
-          </AppBar>
+          </Toolbar>
+        </AppBar>
           <Box component="main" sx={{ flexGrow: 1, mt: '64px', mb: '72px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <AircraftList
               aircrafts={selectedManufacturer.types.map((typeKey) => ({ typeKey, aircraft: AIRCRAFTS[typeKey] }))}
@@ -189,40 +193,40 @@ function App() {
             </Toolbar>
           </AppBar>
           <Box ref={contentRef} component="main" sx={{ flexGrow: 1, mt: '64px', mb: '72px', overflowY: 'auto', bgcolor: 'background.default' }}>
-            <Box key={resetKey}>
-              {Object.entries(checklist.FLIGHT_PHASES).map(([phase, phaseData]) => (
-                <ChecklistPhase
-                  key={phaseData.id}
-                  id={`phase-${phaseData.id}`}
-                  title={phase.replace(/_/g, ' ')}
-                  items={phaseData.items}
-                  isExpanded={expandedPhase === phaseData.id}
-                  onToggle={() => handlePhaseExpand(phaseData.id)}
-                />
-              ))}
-            </Box>
+          <Box key={resetKey}>
+            {Object.entries(checklist.FLIGHT_PHASES).map(([phase, phaseData]) => (
+              <ChecklistPhase
+                key={phaseData.id}
+                id={`phase-${phaseData.id}`}
+                title={phase.replace(/_/g, ' ')}
+                items={phaseData.items}
+                isExpanded={expandedPhase === phaseData.id}
+                onToggle={() => handlePhaseExpand(phaseData.id)}
+              />
+            ))}
           </Box>
+        </Box>
           <Box component="footer" sx={{ position: 'fixed', bottom: 0, left: 0, right: 0, bgcolor: 'background.paper', borderTop: 1, borderColor: 'divider', p: 2, zIndex: 2 }}>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', maxWidth: '100%', mx: 'auto' }}>
               <Button variant="contained" color="inherit" onClick={handleReset} sx={{ bgcolor: 'rgba(0, 0, 0, 0.2)', '&:hover': { bgcolor: 'rgba(0, 0, 0, 0.3)' } }}>
-                Reset
-              </Button>
+              Reset
+            </Button>
               <Button variant="contained" color="success" onClick={handleCheck}>
-                Check
-              </Button>
-            </Box>
+              Check
+            </Button>
           </Box>
+        </Box>
           <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
-            <DialogTitle>Confirm Reset</DialogTitle>
-            <DialogContent>
+          <DialogTitle>Confirm Reset</DialogTitle>
+          <DialogContent>
               <DialogContentText>Tem certeza que deseja reiniciar o checklist?</DialogContentText>
-            </DialogContent>
-            <DialogActions>
+          </DialogContent>
+          <DialogActions>
               <Button onClick={() => setOpenDialog(false)}>Cancelar</Button>
               <Button onClick={confirmReset} color="error">Resetar</Button>
-            </DialogActions>
-          </Dialog>
-        </Box>
+          </DialogActions>
+        </Dialog>
+      </Box>
       )}
     </ThemeProvider>
   );

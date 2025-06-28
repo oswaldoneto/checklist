@@ -1,8 +1,8 @@
 import React from 'react';
-import { Box, Typography, Link, Paper, AppBar, Toolbar, IconButton } from '@mui/material';
+import { Box, Typography, Link, Paper, AppBar, Toolbar, IconButton, Button } from '@mui/material';
 import { ArrowBack as ArrowBackIcon } from '@mui/icons-material';
 
-export default function AboutPage({ onBack }) {
+export default function AboutPage({ onBack, onDonate }) {
   return (
     <Box sx={{ minHeight: '100vh', bgcolor: 'background.default', display: 'flex', flexDirection: 'column' }}>
       <AppBar position="fixed" elevation={0} sx={{ bgcolor: 'background.paper', borderBottom: 1, borderColor: 'divider' }}>
@@ -33,6 +33,9 @@ export default function AboutPage({ onBack }) {
           <Typography variant="body2" sx={{ mt: 2, color: 'text.secondary' }}>
             SimmerLabs is a channel about flight simulation for enthusiasts seeking a realistic and immersive, yet accessible, experience. The channel does not aim to replicate a real pilot's routine with technical precision, but to explore the virtual world of aviation with curiosity, planning, and respect for good simulation practices.
           </Typography>
+          <Button variant="contained" color="success" sx={{ mt: 4 }} onClick={onDonate}>
+            Donate via PIX
+          </Button>
         </Paper>
       </Box>
     </Box>
