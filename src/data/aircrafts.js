@@ -65,7 +65,7 @@ const AIRCRAFTS = {
     checklistImport: null,
     available: false
   },
-  PA28: {
+  PA28B: {
     manufacturer: 'PIPER',
     name: 'PA-28-236 Dakota',
     checklistImport: () => import('./piper/p28b.js'),
