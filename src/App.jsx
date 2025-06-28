@@ -143,6 +143,14 @@ function App() {
               <Typography variant="h6" component="h1" sx={{ flexGrow: 1, textAlign: 'center', fontWeight: 600, color: 'text.primary' }}>
                 {selectedManufacturer.name}
               </Typography>
+              <IconButton
+                color="inherit"
+                aria-label="About"
+                onClick={() => setShowAbout(true)}
+                sx={{ position: 'absolute', right: 8 }}
+              >
+                <InfoIcon />
+              </IconButton>
             </Toolbar>
           </AppBar>
           <Box component="main" sx={{ flexGrow: 1, mt: '64px', mb: '72px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -170,6 +178,14 @@ function App() {
               <Typography variant="h6" component="h1" sx={{ flexGrow: 1, textAlign: 'center', fontWeight: 600, color: 'text.primary' }}>
                 {selectedAircraft.typeDesignator} Checklist
               </Typography>
+              <IconButton
+                color="inherit"
+                aria-label="About"
+                onClick={() => setShowAbout(true)}
+                sx={{ position: 'absolute', right: 8 }}
+              >
+                <InfoIcon />
+              </IconButton>
             </Toolbar>
           </AppBar>
           <Box ref={contentRef} component="main" sx={{ flexGrow: 1, mt: '64px', mb: '72px', overflowY: 'auto', bgcolor: 'background.default' }}>
