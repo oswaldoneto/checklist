@@ -309,16 +309,332 @@ const checklist = {
                     value: "retard"
                 }
             }
+        },
+        "BEFORE_TAKEOFF": {
+            id: "phase_before_takeoff",
+            items: {
+                MASTER_SWITCH: {
+                    id: "before_takeoff_master_switch",
+                    title: "Master switch",
+                    value: "ON"
+                },
+                FLIGHT_INSTRUMENTS: {
+                    id: "before_takeoff_flight_instruments",
+                    title: "Flight instruments",
+                    value: "check"
+                },
+                FUEL_SELECTOR: {
+                    id: "before_takeoff_fuel_selector",
+                    title: "Fuel selector",
+                    value: "proper tank"
+                },
+                ELECTRIC_FUEL_PUMP: {
+                    id: "before_takeoff_electric_fuel_pump",
+                    title: "Electric fuel pump",
+                    value: "ON"
+                },
+                ENGINE_GAUGES: {
+                    id: "before_takeoff_engine_gauges",
+                    title: "Engine gauges",
+                    value: "check"
+                },
+                CARBURETOR_HEAT: {
+                    id: "before_takeoff_carburetor_heat",
+                    title: "Carburetor heat",
+                    value: "OFF"
+                },
+                SEAT_BACKS: {
+                    id: "before_takeoff_seat_backs",
+                    title: "Seat backs",
+                    value: "erect"
+                },
+                PRIMER: {
+                    id: "before_takeoff_primer",
+                    title: "Primer",
+                    value: "locked"
+                },
+                MIXTURE: {
+                    id: "before_takeoff_mixture",
+                    title: "Mixture",
+                    value: "set"
+                },
+                PROP: {
+                    id: "before_takeoff_prop",
+                    title: "Prop",
+                    value: "set"
+                },
+                BELTS_HARNESS: {
+                    id: "before_takeoff_belts_harness",
+                    title: "Belts/harness",
+                    value: "fastened, adjusted"
+                },
+                EMPTY_SEATS: {
+                    id: "before_takeoff_empty_seats",
+                    title: "Empty seats",
+                    value: "seat belts snugly fastened"
+                },
+                FLAPS: {
+                    id: "before_takeoff_flaps",
+                    title: "Flaps",
+                    value: "set"
+                },
+                TRIM_TABS: {
+                    id: "before_takeoff_trim_tabs",
+                    title: "Trim tabs",
+                    value: "set"
+                },
+                CONTROLS: {
+                    id: "before_takeoff_controls",
+                    title: "Controls",
+                    value: "free"
+                },
+                DOORS: {
+                    id: "before_takeoff_doors",
+                    title: "Doors",
+                    value: "latched"
+                },
+                AIR_CONDITIONER: {
+                    id: "before_takeoff_air_conditioner",
+                    title: "Air conditioner",
+                    value: "OFF"
+                },
+                PARKING_BRAKE: {
+                    id: "before_takeoff_parking_brake",
+                    title: "Parking brake",
+                    value: "release"
+                }
+            }
+        },
+        "TAKEOFF_NORMAL": {
+            id: "phase_takeoff_normal",
+            items: {
+                FLAPS: {
+                    id: "takeoff_normal_flaps",
+                    title: "Flaps",
+                    value: "set"
+                },
+                TAB: {
+                    id: "takeoff_normal_tab",
+                    title: "Tab",
+                    value: "set"
+                },
+                ACCELERATION: {
+                    id: "takeoff_normal_acceleration",
+                    title: "Accelerate",
+                    value: "to 60 to 65 KIAS"
+                },
+                CONTROL_WHEEL: {
+                    id: "takeoff_normal_control_wheel",
+                    title: "Control wheel",
+                    value: "back pressure to rotate to climb attitude"
+                }
+            }
+        },
+        "CLIMB": {
+            id: "phase_climb",
+            items: {
+                BEST_RATE: {
+                    id: "climb_best_rate",
+                    title: "Best rate (3000 lb) (flaps up)",
+                    value: "85 KIAS"
+                },
+                BEST_ANGLE: {
+                    id: "climb_best_angle",
+                    title: "Best angle (3000 lb) (flaps up)",
+                    value: "73 KIAS"
+                },
+                EN_ROUTE: {
+                    id: "climb_en_route",
+                    title: "En route",
+                    value: "100 KIAS"
+                },
+                ELECTRIC_FUEL_PUMP: {
+                    id: "climb_electric_fuel_pump",
+                    title: "Electric fuel pump",
+                    value: "OFF at desired altitude"
+                }
+            }
+        },
+        "CRUISING": {
+            id: "phase_cruising",
+            items: {
+                NORMAL_MAX_POWER: {
+                    id: "cruising_normal_max_power",
+                    title: "Normal max power",
+                    value: "75%"
+                },
+                POWER: {
+                    id: "cruising_power",
+                    title: "Power",
+                    value: "set per power table"
+                },
+                MIXTURE: {
+                    id: "cruising_mixture",
+                    title: "Mixture",
+                    value: "adjust"
+                }
+            }
+        },
+        "DESCENT_NORMAL": {
+            id: "phase_descent_normal",
+            items: {
+                THROTTLE: {
+                    id: "descent_normal_throttle",
+                    title: "Throttle",
+                    value: "as required for 1000 FPM descent"
+                },
+                PROPELLER: {
+                    id: "descent_normal_propeller",
+                    title: "Propeller",
+                    value: "2400 RPM"
+                },
+                AIRSPEED: {
+                    id: "descent_normal_airspeed",
+                    title: "Airspeed",
+                    value: "137 KIAS"
+                },
+                MIXTURE: {
+                    id: "descent_normal_mixture",
+                    title: "Mixture",
+                    value: "rich"
+                },
+                CARBURETOR_HEAT: {
+                    id: "descent_normal_carburetor_heat",
+                    title: "Carburetor heat",
+                    value: "on if required"
+                }
+            }
+        },
+        "APPROACH_AND_LANDING": {
+            id: "phase_approach_and_landing",
+            items: {
+                FUEL_SELECTOR: {
+                    id: "approach_fuel_selector",
+                    title: "Fuel selector",
+                    value: "proper tank"
+                },
+                SEAT_BACKS: {
+                    id: "approach_seat_backs",
+                    title: "Seat backs",
+                    value: "erect"
+                },
+                BELTS_HARNESS: {
+                    id: "approach_belts_harness",
+                    title: "Belts/harness",
+                    value: "fasten/adjust"
+                },
+                ELECTRIC_FUEL_PUMP: {
+                    id: "approach_electric_fuel_pump",
+                    title: "Electric fuel pump",
+                    value: "ON"
+                },
+                AIR_CONDITIONER: {
+                    id: "approach_air_conditioner",
+                    title: "Air conditioner",
+                    value: "OFF"
+                },
+                MIXTURE: {
+                    id: "approach_mixture",
+                    title: "Mixture",
+                    value: "set"
+                },
+                PROPELLER: {
+                    id: "approach_propeller",
+                    title: "Propeller",
+                    value: "set"
+                },
+                FLAPS: {
+                    id: "approach_flaps",
+                    title: "Flaps",
+                    value: "down - 102 KIAS max."
+                },
+                TRIM: {
+                    id: "approach_trim",
+                    title: "Trim",
+                    value: "to 72 KIAS"
+                }
+            }
+        },
+        "STOPPING_ENGINE": {
+            id: "phase_stopping_engine",
+            items: {
+                FLAPS: {
+                    id: "stopping_engine_flaps",
+                    title: "Flaps",
+                    value: "retract"
+                },
+                ELECTRIC_FUEL_PUMP: {
+                    id: "stopping_engine_electric_fuel_pump",
+                    title: "Electric fuel pump",
+                    value: "OFF"
+                },
+                AIR_CONDITIONER: {
+                    id: "stopping_engine_air_conditioner",
+                    title: "Air conditioner",
+                    value: "OFF"
+                },
+                RADIOS: {
+                    id: "stopping_engine_radios",
+                    title: "Radios",
+                    value: "OFF"
+                },
+                PROPELLER: {
+                    id: "stopping_engine_propeller",
+                    title: "Propeller",
+                    value: "full INCREASE"
+                },
+                THROTTLE: {
+                    id: "stopping_engine_throttle",
+                    title: "Throttle",
+                    value: "full aft"
+                },
+                MIXTURE: {
+                    id: "stopping_engine_mixture",
+                    title: "Mixture",
+                    value: "idle cut-off"
+                },
+                MAGNETOS: {
+                    id: "stopping_engine_magnetos",
+                    title: "Magnetos",
+                    value: "OFF"
+                },
+                MASTER_SWITCH: {
+                    id: "stopping_engine_master_switch",
+                    title: "Master switch",
+                    value: "OFF"
+                }
+            }
+        },
+        "PARKING": {
+            id: "phase_parking",
+            items: {
+                PARKING_BRAKE: {
+                    id: "parking_parking_brake",
+                    title: "Parking brake",
+                    value: "set"
+                },
+                CONTROL_WHEEL: {
+                    id: "parking_control_wheel",
+                    title: "Control wheel",
+                    value: "secured with belts"
+                },
+                FLAPS: {
+                    id: "parking_flaps",
+                    title: "Flaps",
+                    value: "full up"
+                },
+                WHEEL_CHOCKS: {
+                    id: "parking_wheel_chocks",
+                    title: "Wheel chocks",
+                    value: "in place"
+                },
+                TIE_DOWNS: {
+                    id: "parking_tie_downs",
+                    title: "Tie downs",
+                    value: "secure"
+                }
+            }
         }
-
-
-
-
-
-
-
-
-
     }
 }
 
