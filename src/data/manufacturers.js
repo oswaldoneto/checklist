@@ -28,7 +28,13 @@ const MANUFACTURERS = [
     key: 'EMBRAER',
     name: 'Embraer',
     types: ['E110', 'E190']
+  },
+  {
+    key: 'PIPER',
+    name: 'Piper',
+    types: ['P28R',]
   }
+
 ];
 
 export default MANUFACTURERS; 
