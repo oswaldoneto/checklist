@@ -50,8 +50,8 @@ const AIRCRAFTS = {
   TBM9: {
     manufacturer: 'DAHER',
     name: 'TBM 930',
-    checklistImport: null,
-    available: false
+    checklistImport: () => import('./daher/tbm930.js'),
+    available: true
   },
   E110: {
     manufacturer: 'EMBRAER',
