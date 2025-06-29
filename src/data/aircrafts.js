@@ -56,8 +56,8 @@ const AIRCRAFTS = {
   E110: {
     manufacturer: 'EMBRAER',
     name: 'EMB 110 Bandeirante',
-    checklistImport: null,
-    available: false
+    checklistImport: () => import('./embraer/e110.js'),
+    available: true
   },
   E190: {
     manufacturer: 'EMBRAER',
