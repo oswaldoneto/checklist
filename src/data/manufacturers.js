@@ -12,7 +12,7 @@ const MANUFACTURERS = [
   {
     key: 'CESSNA',
     name: 'Cessna',
-    types: ['C700', 'C172']
+    types: ['C700', 'C172','C208']
   },
   {
     key: 'CIRRUS',

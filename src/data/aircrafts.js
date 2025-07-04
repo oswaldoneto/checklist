@@ -35,6 +35,12 @@ const AIRCRAFTS = {
     checklistImport: () => import('./cessna/c700.js'),
     available: true
   },
+  C208: {
+    manufacturer: 'CESSNA',
+    name: 'Cessna 208 Caravan',
+    checklistImport: () => import('./cessna/c208.js'),
+    available: true
+  },
   C172: {
     manufacturer: 'CESSNA',
     name: 'Cessna 172 G1000',
