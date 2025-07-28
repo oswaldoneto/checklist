@@ -2,7 +2,7 @@ const MANUFACTURERS = [
   {
     key: 'AIRBUS',
     name: 'Airbus',
-    types: ['A320NEO']
+    types: ['A320NEO','AS350']
   },
   {
     key: 'BOEING',
