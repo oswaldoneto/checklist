@@ -35,6 +35,12 @@ const AIRCRAFTS = {
     checklistImport: null,
     available: false
   },
+  C25C: {
+    manufacturer: 'CESSNA',
+    name: 'Cessna Citation CJ4',
+    checklistImport: () => import('./cessna/c25c.js'),
+    available: true
+  },
   C700: {
     manufacturer: 'CESSNA',
     name: 'Cessna Citation Longitude',
