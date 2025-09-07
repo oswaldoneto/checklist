@@ -27,7 +27,7 @@ const MANUFACTURERS = [
   {
     key: 'EMBRAER',
     name: 'Embraer',
-    types: ['E110', 'E190']
+    types: ['E55P', 'E110', 'E190']
   },
   {
     key: 'PIPER',

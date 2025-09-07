@@ -77,6 +77,12 @@ const AIRCRAFTS = {
     checklistImport: () => import('./embraer/e110.js'),
     available: true
   },
+  E55P: {
+    manufacturer: 'EMBRAER',
+    name: 'EMB-505 Phenom 300',
+    checklistImport: () => import('./embraer/e55p.js'),
+    available: true
+  },
   E190: {
     manufacturer: 'EMBRAER',
     name: 'Ejet 190',
