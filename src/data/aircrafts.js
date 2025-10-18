@@ -94,6 +94,12 @@ const AIRCRAFTS = {
     name: 'PA-28-236 Dakota',
     checklistImport: () => import('./piper/p28b.js'),
     available: true
+  },
+  PC12: {
+    manufacturer: 'PILATUS',
+    name: 'Pilatus PC12 NGX',
+    checklistImport: () => import('./pilatus/pc12.js'),
+    available: true
   }
 };
 
