@@ -37,9 +37,9 @@ const MANUFACTURERS = [
   {
     key: 'PILATUS',
     name: 'Pilatus',
-    types: ['PC12']
+    types: ['PC12', 'PC24']
   }
 
 ];
 
-export default MANUFACTURERS; 
+export default MANUFACTURERS;
