@@ -11,6 +11,12 @@ const AIRCRAFTS = {
     checklistImport: () => import('./airbus/as350.js'),
     available: true
   },
+  BE36: {
+    manufacturer: 'BEECHCRAFT',
+    name: 'Bonanza A36',
+    checklistImport: () => import('./beechcraft/be36.js'),
+    available: true
+  },
   B737MAX: {
     manufacturer: 'BOEING',
     name: 'Boeing 737 Max',

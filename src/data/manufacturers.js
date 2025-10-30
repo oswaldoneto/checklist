@@ -5,6 +5,11 @@ const MANUFACTURERS = [
     types: ['A320NEO','AS350']
   },
   {
+    key: 'BEECHCRAFT',
+    name: 'Beechcraft',
+    types: ['BE36']
+  },
+  {
     key: 'BOEING',
     name: 'Boeing',
     types: ['B737MAX', 'B738', 'B763', 'B772']
