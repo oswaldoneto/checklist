@@ -17,6 +17,12 @@ const AIRCRAFTS = {
     checklistImport: () => import('./airbus/h160.js'),
     available: true
   },
+  B36TP: {
+    manufacturer: 'BEECHCRAFT',
+    name: 'Bonanza A36 Turboprop',
+    checklistImport: () => import('./beechcraft/b36tp.js'),
+    available: true
+  },
   BE36: {
     manufacturer: 'BEECHCRAFT',
     name: 'Bonanza A36',
