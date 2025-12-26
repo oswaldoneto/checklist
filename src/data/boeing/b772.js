@@ -14,6 +14,25 @@ const checklist = {
         APU_GENERATOR: { id: 'electric_power_up_apu_generator', title: 'APU GENERATOR', value: 'ON' }
       }
     },
+    PRELIMINARY_PREFLIGHT_PROCEDURE: {
+      id: 'phase_preliminary_preflight_procedure',
+      items: {
+        TECHNICAL_LOG: { id: 'preliminary_preflight_procedure_technical_log', title: 'TECHNICAL LOG', value: 'REVIEW' },
+        SECONDARY_ENGINE_INDICATIONS: { id: 'preliminary_preflight_procedure_secondary_engine_indications', title: 'SECONDARY ENGINE INDICATIONS', value: 'DISPLAY' },
+        STATUS_PAGE: { id: 'preliminary_preflight_procedure_status_page', title: 'STATUS PAGE', value: 'DISPLAY' },
+        PARKING_BRAKE: { id: 'preliminary_preflight_procedure_parking_brake', title: 'PARKING BRAKE', value: 'SET' },
+        ADIRU: { id: 'preliminary_preflight_procedure_adiru', title: 'ADIRU', value: 'ON' },
+        EMERGENCY_LIGHTS_SWITCH: { id: 'preliminary_preflight_procedure_emergency_lights_switch', title: 'EMERGENCY LIGHTS SWITCH', value: 'ARMED' },
+        EFB: { id: 'preliminary_preflight_procedure_efb', title: 'EFB', value: 'ON' },
+        ATIS: { id: 'preliminary_preflight_procedure_atis', title: 'ATIS', value: 'RECEIVED' },
+        AIRCRAFT_DOCUMENTS: { id: 'preliminary_preflight_procedure_aircraft_documents', title: 'AIRCRAFT DOCUMENTS', value: 'CHECK' },
+        FLIGHT_DECK_ACCESS_SYSTEM_SWITCH: { id: 'preliminary_preflight_procedure_flight_deck_access_system_switch', title: 'FLIGHT DECK ACCESS SYSTEM SWITCH', value: 'GUARD' },
+        EMERGENCY_EQUIPMENT: { id: 'preliminary_preflight_procedure_emergency_equipment', title: 'EMERGENCY EQUIPMENT', value: 'CHECK' },
+        OVERHEAD_MAINTENANCE_PANEL: { id: 'preliminary_preflight_procedure_overhead_maintenance_panel', title: 'OVERHEAD MAINTENANCE PANEL', value: 'GUARDS CLOSED' },
+        CARGO_TEMPERATURE: { id: 'preliminary_preflight_procedure_cargo_temperature', title: 'CARGO TEMPERATURE', value: 'AS NEEDED' },
+        CIRCUIT_BREAKERS: { id: 'preliminary_preflight_procedure_circuit_breakers', title: 'CIRCUIT BREAKERS', value: 'CHECK' }
+      }
+    },
     PREFLIGHT: {
       id: 'phase_preflight',
       items: {
