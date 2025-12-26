@@ -33,6 +33,21 @@ const checklist = {
         CIRCUIT_BREAKERS: { id: 'preliminary_preflight_procedure_circuit_breakers', title: 'CIRCUIT BREAKERS', value: 'CHECK' }
       }
     },
+    FMC_INITIAL_DATA: {
+      id: 'phase_fmc_initial_data',
+      items: {
+        IDENT_PAGE: { id: 'fmc_initial_data_ident_page', title: 'IDENT PAGE', value: 'SET' },
+        POS_INIT_PAGE: { id: 'fmc_initial_data_pos_init_page', title: 'POS INIT PAGE', value: 'SET' },
+        RTE_PAGE: { id: 'fmc_initial_data_rte_page', title: 'RTE PAGE', value: 'SET' },
+        DEPARTURE_PAGE: { id: 'fmc_initial_data_departure_page', title: 'DEPARTURE PAGE', value: 'SET' },
+        ARRIVAL_PAGE: { id: 'fmc_initial_data_arrival_page', title: 'ARRIVAL PAGE', value: 'SET' },
+        LEGS_PAGE: { id: 'fmc_initial_data_legs_page', title: 'LEGS PAGE', value: 'SET' },
+        PROGRESS_PAGE: { id: 'fmc_initial_data_progress_page', title: 'PROGRESS PAGE', value: 'SET' },
+        RTE_2_PAGE: { id: 'fmc_initial_data_rte_2_page', title: 'RTE 2 PAGE', value: 'SET' },
+        NAV_RADIO_PAGE: { id: 'fmc_initial_data_nav_radio_page', title: 'NAV RADIO PAGE', value: 'SET' },
+        PERF_INIT_PAGE: { id: 'fmc_initial_data_perf_init_page', title: 'PERF INIT PAGE', value: 'SET' }
+      }
+    },
     PREFLIGHT: {
       id: 'phase_preflight',
       items: {
