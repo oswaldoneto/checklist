@@ -43,6 +43,11 @@ const MANUFACTURERS = [
     key: 'PILATUS',
     name: 'Pilatus',
     types: ['PC12', 'PC24']
+  },
+  {
+    key: 'VANS',
+    name: "Van's Aircraft",
+    types: ['RV10']
   }
 
 ];
