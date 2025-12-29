@@ -121,18 +121,19 @@ const checklist = {
     BEFORE_START: {
       id: 'phase_before_start',
       items: {
-        PUSHBACK_STARTUP_CLEARANCE: { id: 'before_start_pushback_startup_clearance', title: 'PUSHBACK & STARTUP CLEARANCE', value: 'RECEIVED' },
-        DOORS: { id: 'before_start_doors', title: 'DOORS', value: 'CLOSED (CHECK DOOR PAGE)' },
-        GROUND_EQUIPMENT: { id: 'before_start_ground_equipment', title: 'GROUND EQUIPMENT', value: 'DISCONNECTED' },
-        R_ELEC_DEMAND_HYDR_PUMP: { id: 'before_start_r_elec_demand_hydr_pump', title: 'R ELEC DEMAND HYDR PUMP', value: 'AUTO' },
-        PRIMARY_ELEC_HYDR_PUMPS: { id: 'before_start_primary_elec_hydr_pumps', title: 'PRIMARY C1 + C2 ELEC HYDR PUMPS', value: 'ON' },
-        L_ELEC_DEMAND_HYDR_PUMP: { id: 'before_start_l_elec_demand_hydr_pump', title: 'L ELEC DEMAND HYDR PUMP', value: 'AUTO' },
-        AIR_DEMAND_HYDR_PUMPS: { id: 'before_start_air_demand_hydr_pumps', title: 'C1 + C2 AIR DEMAND HYDR PUMPS', value: 'AUTO' },
-        FUEL_PUMPS: { id: 'before_start_fuel_pumps', title: 'L + R FUEL PUMPS', value: 'ALL ON' },
-        CENTER_FUEL_PUMPS: { id: 'before_start_center_fuel_pumps', title: 'L + R CENTER FUEL PUMPS', value: 'AS REQUIRED' },
-        PASSENGER_SIGNS: { id: 'before_start_passenger_signs', title: 'PASSENGER SIGNS', value: 'ON' },
-        BEACON: { id: 'before_start_beacon', title: 'BEACON', value: 'ON' },
-        RECALL: { id: 'before_start_recall', title: 'RECALL', value: 'PUSH' }
+        ELECTRICAL_PANEL: { id: 'before_start_electrical_panel', title: 'ELECTRICAL PANEL', value: 'SET' },
+        APU: { id: 'before_start_apu', title: 'APU', value: 'START AND ON' },
+        FLIGHT_DECK_DOOR: { id: 'before_start_flight_deck_door', title: 'FLIGHT DECK DOOR', value: 'CLOSED' },
+        FLIGHT_DECK_WINDOWS: { id: 'before_start_flight_deck_windows', title: 'FLIGHT DECK WINDOWS', value: 'CLOSED' },
+        HYDRAULIC_PANEL: { id: 'before_start_hydraulic_panel', title: 'HYDRAULIC PANEL', value: 'SET' },
+        PASS_SIGN_PANEL: { id: 'before_start_pass_sign_panel', title: 'PASS SIGN PANEL', value: 'SET' },
+        FUEL_PANEL: { id: 'before_start_fuel_panel', title: 'FUEL PANEL', value: 'SET' },
+        BEACON_LIGHT_SWITCH: { id: 'before_start_beacon_light_switch', title: 'BEACON LIGHT SWITCH', value: 'ON' },
+        EICAS_MESSAGE: { id: 'before_start_eicas_message', title: 'EICAS MESSAGE', value: 'RCL AND CANCEL' },
+        TRANSPONDER: { id: 'before_start_transponder', title: 'TRANSPONDER', value: 'XPNDR' },
+        MCP: { id: 'before_start_mcp', title: 'MCP', value: 'SET' },
+        CDU_DISPLAY: { id: 'before_start_cdu_display', title: 'CDU DISPLAY', value: 'SET' },
+        TRIM: { id: 'before_start_trim', title: 'TRIM', value: 'SET' }
       }
     },
     ENGINE_START: {
