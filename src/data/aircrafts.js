@@ -130,6 +130,12 @@ const AIRCRAFTS = {
     name: 'Pilatus PC24',
     checklistImport: () => import('./pilatus/pc24.js'),
     available: true
+  },
+  RV10: {
+    manufacturer: 'VANS',
+    name: "Van's Aircraft RV-10",
+    checklistImport: () => import('./vans/rv10.js'),
+    available: true
   }
 };
 
