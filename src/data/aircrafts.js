@@ -50,8 +50,8 @@ const AIRCRAFTS = {
   B772: {
     manufacturer: 'BOEING',
     name: 'Boeing 777-200ER',
-    checklistImport: null,
-    available: false
+    checklistImport: () => import('./boeing/b772.js'),
+    available: true
   },
   C25C: {
     manufacturer: 'CESSNA',
