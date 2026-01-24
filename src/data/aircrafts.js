@@ -125,6 +125,12 @@ const AIRCRAFTS = {
     checklistImport: () => import('./pilatus/pc12.js'),
     available: true
   },
+  PC1247: {
+    manufacturer: 'PILATUS',
+    name: 'Pilatus PC-12/47',
+    checklistImport: () => import('./pilatus/pc1247.js'),
+    available: true
+  },
   PC24: {
     manufacturer: 'PILATUS',
     name: 'Pilatus PC24',
