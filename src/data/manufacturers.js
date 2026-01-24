@@ -42,7 +42,7 @@ const MANUFACTURERS = [
   {
     key: 'PILATUS',
     name: 'Pilatus',
-    types: ['PC12', 'PC24']
+    types: ['PC12', 'PC1247', 'PC24']
   },
   {
     key: 'VANS',
