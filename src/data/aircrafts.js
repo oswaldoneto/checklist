@@ -142,6 +142,12 @@ const AIRCRAFTS = {
     name: "Van's Aircraft RV-10",
     checklistImport: () => import('./vans/rv10.js'),
     available: true
+  },
+  DHC6: {
+    manufacturer: 'DEHAVILLAND',
+    name: 'DHC-6-300 Twin Otter',
+    checklistImport: () => import('./dehavilland/dhc6.js'),
+    available: true
   }
 };
 
