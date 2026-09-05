@@ -29,6 +29,18 @@ const AIRCRAFTS = {
     checklistImport: () => import('./beechcraft/be36.js'),
     available: true
   },
+  B58: {
+    manufacturer: 'BEECHCRAFT',
+    name: 'Baron 58',
+    checklistImport: () => import('./beechcraft/b58.js'),
+    available: true
+  },
+  B58P: {
+    manufacturer: 'BEECHCRAFT',
+    name: 'Baron 58P',
+    checklistImport: () => import('./beechcraft/b58p.js'),
+    available: true
+  },
   B737MAX: {
     manufacturer: 'BOEING',
     name: 'Boeing 737 Max',
