@@ -1,9 +1,9 @@
 const AIRCRAFTS = {
   A320NEO: {
     manufacturer: 'AIRBUS',
-    name: 'Airbus 320 Neo',
-    checklistImport: null,
-    available: false
+    name: 'Airbus A320neo (ToLiss)',
+    checklistImport: () => import('./airbus/a20n.js'),
+    available: true
   },
   AS350: {
     manufacturer: 'AIRBUS',
