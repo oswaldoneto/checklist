@@ -53,6 +53,12 @@ const AIRCRAFTS = {
     checklistImport: null,
     available: false
   },
+  B752: {
+    manufacturer: 'BOEING',
+    name: 'Boeing 757-200 (BlueBird)',
+    checklistImport: () => import('./boeing/b752.js'),
+    available: true
+  },
   B763: {
     manufacturer: 'BOEING',
     name: 'Boeing 767-300',
