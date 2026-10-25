@@ -12,7 +12,7 @@ const MANUFACTURERS = [
   {
     key: 'BOEING',
     name: 'Boeing',
-    types: ['B737MAX', 'B738', 'B763', 'B772']
+    types: ['B737MAX', 'B738', 'B752', 'B763', 'B772']
   },
   {
     key: 'CESSNA',
